@@ -9,18 +9,17 @@
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Controlling Helper" />
   <Description DefaultValue="A template to get started." />
-  <IconUrl DefaultValue="https://garlicbread420.github.io/Controlling-Helper/assets/icon-32.png" />
-  <HighResolutionIconUrl DefaultValue="https://garlicbread420.github.io/Controlling-Helper/assets/icon-64.png" />
+  <IconUrl DefaultValue="https://www.contoso.com/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://www.contoso.com/assets/icon-64.png" />
   <SupportUrl DefaultValue="https://www.contoso.com/help" />
   <AppDomains>
-    <AppDomain>https://garlicbread420.github.io</AppDomain>
+    <AppDomain>https://www.contoso.com</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Workbook" />
   </Hosts>
   <DefaultSettings>
-    <SourceLocation
-      DefaultValue="https://garlicbread420.github.io/Controlling-Helper/dist/taskpane.html" />
+    <SourceLocation DefaultValue="https://www.contoso.com/taskpane.html" />
   </DefaultSettings>
   <Permissions>ReadWriteDocument</Permissions>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
@@ -83,14 +82,16 @@
           DefaultValue="https://garlicbread420.github.io/Controlling-Helper/dist/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Welcome to the Circle Trade Controlling Helper!" />
+        <bt:String id="GetStarted.Title"
+          DefaultValue="Welcome to the Circle Trade Controlling Helper!" />
         <bt:String id="CommandsGroup.Label" DefaultValue="Circle Trade Adito" />
         <bt:String id="TaskpaneButton.Label" DefaultValue="Open Controlling Helper" />
       </bt:ShortStrings>
       <bt:LongStrings>
         <bt:String id="GetStarted.Description"
           DefaultValue="The Add-In loaded succesfully. Click The Logo to get started." />
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to open Circle Trade Controlling Helper" />
+        <bt:String id="TaskpaneButton.Tooltip"
+          DefaultValue="Click to open Circle Trade Controlling Helper" />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
