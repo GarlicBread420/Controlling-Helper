@@ -20,6 +20,8 @@ module.exports = async (env, options) => {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
       taskpane: ["./src/taskpane/taskpane.ts", "./src/taskpane/taskpane.html"],
       commands: "./src/commands/commands.ts",
+      autoControlling_feature: ["./src/features/autoControlling_feature/autoControlling_feature.ts", "./src/features/autoControlling_feature/autoControlling_feature.html"],
+      pieChart_feature: ["./src/features/pieChart_feature/pieChart_feature.ts", "./src/features/pieChart_feature/pieChart_feature.html"],
     },
     output: {
       clean: true,
@@ -82,6 +84,16 @@ module.exports = async (env, options) => {
         filename: "commands.html",
         template: "./src/commands/commands.html",
         chunks: ["polyfill", "commands"],
+      }),
+      new HtmlWebpackPlugin({
+        filename: "autoControlling_feature.html",
+        template: "./src/features/autoControlling_feature/autoControlling_feature.html",
+        chunks: ["polyfill", "autoControlling_feature"],
+      }),
+      new HtmlWebpackPlugin({
+        filename: "pieChart_feature.html",
+        template: "./src/features/pieChart_feature/pieChart_feature.html",
+        chunks: ["polyfill", "pieChart_feature"],
       }),
     ],
     devServer: {

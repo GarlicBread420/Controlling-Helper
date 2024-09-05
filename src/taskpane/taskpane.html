@@ -8,14 +8,15 @@
 
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
-    <script src="taskpane.ts"></script>
+    <!-- Script -->
+    <script type="text/typescript" src="taskpane.ts"></script>
     <!-- For more information on Fluent UI, visit https://developer.microsoft.com/fluentui#/. -->
     <link
       rel="stylesheet"
       href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css"
     />
 
-    <!-- Template styles -->
+    <!-- Style -->
     <link href="taskpane.css" rel="stylesheet" type="text/css" />
   </head>
 
@@ -28,7 +29,7 @@
     <main id="app-body" class="ms-welcome__main">
       <h2 class="ms-font-xl">Select which task you would like to perform</h2>
       <div class="featureButtonGroup">
-        <button id="placeholder_feature_button">Extract employee working hours from .csv</button>
+        <button id="autoControlling_feature_button">Extract employee working hours from .csv</button>
         <button id="pieChart_feature_button">View employee data as pie chart</button>
       </div>
       <p><label id="item-subject"></label></p>

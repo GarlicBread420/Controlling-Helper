@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kreis Trade Export Tool</title>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+    <!-- Style -->
+    <link rel="stylesheet" href="autoControlling_feature.css" /> 
+    <!-- Script -->
+     <script src="autoControlling_feature.ts"></script>
+  </head>
+  <body>
+    <button id="backButton">Back to Main</button>
+
+    <div id="header">
+      <h1>Kreis TRADE Export</h1>
+    </div>
+    
+    <div class="block">
+      <div>
+        <label for="employeeSelect">Select Employee:</label>
+        <select id="employeeSelect"></select>
+      </div>
+
+      <div>
+        <label for="columnESelect">Select Category:</label>
+        <select id="columnESelect"></select>
+        <br />
+        <button id="addEntryButton">Add</button>
+      </div>
+    </div>
+
+    <div class="block">
+      <div>
+        <label for="formulaInput">Formula:</label>
+        <textarea type="text" id="formulaInput">Enter Formula</textarea>
+        <br />
+        <button id="addFormulaButton">Add Formula</button>
+      </div>
+    </div>
+
+    <div class = "block">
+      <label for="monthSelect">Select Month:</label>
+      <select id="monthSelect"></select>
+      <button id="autodetectMonth">Autodetect</button>
+      <br />
+    </div>
+
+    <div class="block">
+      <h2>Entries</h2>
+
+      <div>
+      <button id="performAllCalculations">Calculate all</button>
+      <label for="overWriteAllCheckbox">Overwrite All</label>
+      <input type="checkbox" id="overWriteAllCheckbox">
+ 
+      </div>
+      <br />
+      <div id="loadingMessage" style="display:none;">
+        <p>Calculating... <span id="progressIndicator"></span></p>
+      </div>
+            <!-- Confirmation Modal -->
+      <div id="confirmationModal" class="modal">
+        <p id="confirmationMessage"></p>
+        <button id="confirmButton" class="modal-button">OK</button>
+        <button id="cancelButton" class="modal-button">Cancel</button>
+        <button id="cancelAllButton" class="modal-button">Cancel All</button>
+      </div>
+      <div id="modalOverlay" class="modal-overlay"></div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Formula</th>
+            <th>Actions (check to add to "all calculations")</th>
+          </tr>
+        </thead>
+        <tbody id="entriesTableBody">
+        </tbody>
+      </table>
+    </div>
+
+  </body>
+</html>

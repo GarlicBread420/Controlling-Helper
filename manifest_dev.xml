@@ -67,19 +67,19 @@
     <Resources>
       <bt:Images>
         <bt:Image id="Icon.16x16"
-          DefaultValue="https://garlicbread420.github.io/Controlling-Helper/assets/icon-16.png" />
+          DefaultValue="https://localhost:3000/assets/icon-16.png" />
         <bt:Image id="Icon.32x32"
-          DefaultValue="https://garlicbread420.github.io/Controlling-Helper/assets/icon-32.png" />
+          DefaultValue="https://localhost:3000/assets/icon-32.png" />
         <bt:Image id="Icon.80x80"
-          DefaultValue="https://garlicbread420.github.io/Controlling-Helper/assets/icon-80.png" />
+          DefaultValue="https://localhost:3000/assets/icon-80.png" />
       </bt:Images>
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl"
           DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
         <bt:Url id="Commands.Url"
-          DefaultValue="https://garlicbread420.github.io/Controlling-Helper/dist/commands.html" />
+          DefaultValue="https://localhost:3000/src/commands.html" />
         <bt:Url id="Taskpane.Url"
-          DefaultValue="https://garlicbread420.github.io/Controlling-Helper/dist/taskpane.html" />
+          DefaultValue="https://localhost:3000/taskpane.html" />
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title"

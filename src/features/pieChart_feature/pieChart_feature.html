@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PieChart Feature</title>
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+    <!-- script -->
+    <script type="module" src="pieChart_feature.ts" defer></script>
+    <!-- style -->
+    <link rel="stylesheet" href="pieChart_feature.css" />
+  </head>
+  <body>
+    <button id="backButton">Back to Main</button>
+    <h1>Pie Chart</h1>
+
+    <!-- Selections -->
+    <div class="dataSelect">
+      <!-- Employee select -->
+      <div class="employeeSelect">
+        <legend>Select Employees</legend>
+        <br />
+        <input type="checkbox" id="selectAll" />
+        <label for="selectAll">Select all</label>
+        <br />
+        <input type="checkbox" id="employee1" name="employeeSelect" />
+        <label for="employee1">Employee 1</label>
+        <br />
+        <input type="checkbox" id="employee2" name="employeeSelect" />
+        <label for="employee2">Employee 2</label>
+        <br />
+        <input type="checkbox" id="employee3" name="employeeSelect" />
+        <label for="employee3">Employee 3</label>
+      </div>
+
+      <!-- Month select -->
+      <div class="monthSelect">
+        <legend>Select Month</legend>
+        <br />
+        <select id="monthSelect"></select>
+      </div>
+    </div>
+
+    <!-- Pie Chart-->
+    <div id="PieChartContainer">
+      <canvas id="PieChart">
+
+      </canvas>
+    </div>
+  </body>
+</html>
