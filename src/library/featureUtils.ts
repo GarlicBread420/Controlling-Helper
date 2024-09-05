@@ -1,3 +1,5 @@
+import { Chart } from "chart.js/auto";
+
 export function featureUtils() {}
 //ToDo: Add documentation to all functions
 
@@ -71,27 +73,73 @@ featureUtils.selectAll = function (pSource: string, pElement: string) {
   }
 };
 
-// featureUtils.loadPieChart = function () {
-//   const xValues = ["Employee 1", "Employee 2", "Employee 3"];
-//   const yValues = [55, 30, 25];
-//   const barColors = ["#b91d47", "#00aba9", "#2b5797"];
+featureUtils.loadPieChart = function () {
+  const xValues: string[] = ["Employee 2", "Employee 3"];
+  const yValues: number[] = [75, 25];
+  const barColors: string[] = ["#8BC1F7", "#BDE2B9", "#A2D9D9", "#B2B0EA", "#F9E0A2", "#F4B678"];
 
-//   new Chart("PieChart", {
-//     type: "pie",
-//     data: {
-//       labels: xValues,
-//       datasets: [
-//         {
-//           backgroundColor: barColors,
-//           data: yValues,
-//         },
-//       ],
-//     },
-//     options: {
-//       title: {
-//         display: true,
-//         text: "Gebuchte Tage",
-//       },
-//     },
-//   });
-// };
+  const data = {
+    lables: xValues,
+    datasets: [
+      {
+        data: yValues,
+        backgroundColor: barColors,
+      },
+    ],
+    hoverOffset: 4,
+  };
+
+  var pieChart = new Chart("pieChart", {
+    type: "pie",
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top",
+        },
+        title: {
+          display: true,
+          text: "Gebuchte Zeit",
+        },
+      },
+    },
+  });
+
+  return pieChart;
+};
+
+/**
+ *
+ * @param pChart
+ */
+featureUtils.addPieChartData = function (pChart: Chart, pLabel: string, pNewData: string[]) {
+  pChart.data.labels.push(pLabel);
+  pChart.data.datasets.forEach((dataset) => {
+    dataset.data.push();
+  });
+  pChart.update();
+};
+
+featureUtils.removePieChartData = function (pChart: Chart, pData: string|number) {
+  let data = pChart.data;;
+  let removalIndex = data.datasets.indexOf(pData)
+  pChart.data.datasets.forEach((dataset) => {
+    dataset.data.pop(pData);
+  });
+  pChart.update();
+};
+
+featureUtils.addRemoveDataCheckbox = function (pSource: string) {
+  var source: HTMLElement = document.getElementById(pSource);
+
+  source.addEventListener("change", function () {
+    if (source instanceof HTMLInputElement) {
+      if (source.checked) {
+        featureUtils.addPieChartData();
+      } else {
+        featureUtils.removePieChartData();
+      }
+    }
+  });
+};

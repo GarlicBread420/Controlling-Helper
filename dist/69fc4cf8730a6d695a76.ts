@@ -4,5 +4,6 @@ Office.onReady(info => {
     document.getElementById("backButton").onclick = featureUtils.goBack;
     document.getElementById("selectAll").onclick = () => featureUtils.selectAll("selectAll", "employeeSelect");
     featureUtils.populateDropdown(featureUtils.getMonthArray(), "monthSelect");
+    featureUtils.loadPieChart;
   }
 });
