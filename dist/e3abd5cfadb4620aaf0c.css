@@ -38,6 +38,8 @@ button:hover {
 
 /* Checkbox field */
 .dataSelect {
+  align-items: center;
+  display: flex;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -50,12 +52,13 @@ legend {
 }
 
 .employeeSelect {
-  float: left;
+  /* float: left; */
   position: relative;
 }
 
 .monthSelect {
-  float: right;
+  /* float: right; */
+  margin-left: auto;
   position: relative;
 }
 
@@ -70,4 +73,36 @@ select {
   border: 1px solid #ccc;
   font-size: 14px;
   margin-bottom: 10px;
+}
+
+#pieChartArea {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.entrySelect {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  width: auto;
+  overflow: auto;
+}
+
+#pieChart {
+  width: 400px;
+  height: 400px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 10px;
 }

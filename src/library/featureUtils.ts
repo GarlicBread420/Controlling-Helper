@@ -6,32 +6,35 @@ export function featureUtils() {}
 /**
  * Get an array with all months
  *
- * @returns {String[]}  Array with months
+ * @returns Array with months
  */
 featureUtils.getMonthArray = function () {
-  const months: string[] = [
-    "Januar",
-    "Februar",
-    "März",
+  return [
+    "January",
+    "February",
+    "March",
     "April",
-    "Mai",
-    "Juni",
-    "Juli",
+    "May",
+    "June",
+    "July",
     "August",
     "September",
-    "Oktober",
+    "October",
     "November",
-    "Dezember",
+    "December",
   ];
 
-  return months;
+};
+
+featureUtils.getTestEmployeeArray = function () {
+  return ["All Employees", "Employee 1", "Employee 2", "Employee 3"];
 };
 
 /**
  * Populate a dropdown
  *
- * @param {string[]} pValueArray     Array with Values that should be displayed in the dropdown
- * @param {string} pElementId        ID of the dropdown
+ * @param pValueArray     Array with Values that should be displayed in the dropdown
+ * @param pElementId      ID of the dropdown
  */
 featureUtils.populateDropdown = function (pValueArray: string[], pElementId: string) {
   const element = document.getElementById(pElementId);
@@ -54,8 +57,8 @@ featureUtils.goBack = function () {
 /**
  * Create a select all checkbox
  *
- * @param {string} pSource    Id of the source checkbox (the 'select all' box)
- * @param {string} pElement   Name of the checkboxes that will be checked
+ * @param pSource    Id of the source checkbox (the 'select all' box)
+ * @param pElement   Name of the checkboxes that will be checked
  */
 featureUtils.selectAll = function (pSource: string, pElement: string) {
   var source: HTMLElement = document.getElementById(pSource);
@@ -73,13 +76,16 @@ featureUtils.selectAll = function (pSource: string, pElement: string) {
   }
 };
 
+/**
+ * Loads the basic pie chart
+ * @returns the pie chart
+ */
 featureUtils.loadPieChart = function () {
-  const xValues: string[] = ["Employee 2", "Employee 3"];
-  const yValues: number[] = [75, 25];
+  const xValues: string[] = [""];
+  const yValues: number[] = [];
   const barColors: string[] = ["#8BC1F7", "#BDE2B9", "#A2D9D9", "#B2B0EA", "#F9E0A2", "#F4B678"];
 
   const data = {
-    lables: xValues,
     datasets: [
       {
         data: yValues,
@@ -87,20 +93,22 @@ featureUtils.loadPieChart = function () {
       },
     ],
     hoverOffset: 4,
+    labels: xValues,
   };
 
   var pieChart = new Chart("pieChart", {
     type: "pie",
     data: data,
     options: {
-      responsive: true,
+      responsive: false,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           position: "top",
         },
         title: {
           display: true,
-          text: "Gebuchte Zeit",
+          text: "Time",
         },
       },
     },
@@ -110,35 +118,64 @@ featureUtils.loadPieChart = function () {
 };
 
 /**
- *
- * @param pChart
+ * Add Data to a pie chart
+ * 
+ * @param pChart chart where data should be added
+ * @param pLabel label of the datasets
+ * @param pNewData new data that should be added
  */
-featureUtils.addPieChartData = function (pChart: Chart, pLabel: string, pNewData: string[]) {
+featureUtils.addPieChartData = function (pChart: Chart<"pie", number[], string>, pLabel: string, pNewData) {
+  //push new label
   pChart.data.labels.push(pLabel);
+
+  //push data
   pChart.data.datasets.forEach((dataset) => {
-    dataset.data.push();
+    dataset.data.push(pNewData);
   });
   pChart.update();
 };
 
-featureUtils.removePieChartData = function (pChart: Chart, pData: string|number) {
-  let data = pChart.data;;
-  let removalIndex = data.datasets.indexOf(pData)
+/**
+ * Remove data from a pie chart
+ * 
+ * @param pChart chart where data should be removed
+ * @param pLabel label of the datasets
+ * @param pData data that should be removed
+ */
+featureUtils.removePieChartData = function (pChart: Chart<"pie", number[], string>, pLabel: string, pData) {
+  var removalIndexLabel = pChart.data.labels.indexOf(pLabel);
+  var removalIndexData = pChart.data.datasets.indexOf(pData);
+
+  pChart.data.labels.splice(removalIndexLabel, 1);
+
   pChart.data.datasets.forEach((dataset) => {
-    dataset.data.pop(pData);
+    dataset.data.splice(removalIndexData, 1);
   });
+
   pChart.update();
 };
 
-featureUtils.addRemoveDataCheckbox = function (pSource: string) {
+/**
+ * Adds function to checkboxes that remove or add data
+ * @param pSource id of the checkbox
+ * @param pChart chart where data should be added/removed
+ * @param pLabel label of the data
+ * @param pData the data that should be added/removed
+ */
+featureUtils.addRemoveDataCheckbox = function (
+  pSource: string,
+  pChart: Chart<"pie", number[], string>,
+  pLabel: string,
+  pData
+) {
   var source: HTMLElement = document.getElementById(pSource);
 
   source.addEventListener("change", function () {
     if (source instanceof HTMLInputElement) {
       if (source.checked) {
-        featureUtils.addPieChartData();
+        featureUtils.addPieChartData(pChart, pLabel, pData);
       } else {
-        featureUtils.removePieChartData();
+        featureUtils.removePieChartData(pChart, pLabel, pData);
       }
     }
   });

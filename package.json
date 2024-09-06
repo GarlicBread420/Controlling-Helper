@@ -28,6 +28,7 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
+    "@microsoft/office-js": "^1.1.93",
     "chart.js": "^4.4.4",
     "core-js": "^3.36.0",
     "regenerator-runtime": "^0.14.1",
