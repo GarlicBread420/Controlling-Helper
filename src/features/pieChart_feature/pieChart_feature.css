@@ -36,30 +36,59 @@ button:hover {
   left: 20px;
 }
 
-/* Checkbox field */
+/* Container for checkbox field and dropdowns */
 .dataSelect {
-  align-items: center;
   display: flex;
+  justify-content: space-between; /* Align employee and month selections side by side */
+  align-items: center;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px; /* Slightly rounder corners for a modern look */
   padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  margin-top: 20px; /* Add spacing above */
+  width: 100%;
+  max-width: 600px; /* Set a maximum width for better control */
+  margin-left: auto;
+  margin-right: auto;
   overflow: auto;
 }
 
+/* Center the legend and style it */
 legend {
   text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333; /* Darker color for better readability */
 }
 
+/* Employee select field (left aligned) */
 .employeeSelect {
-  /* float: left; */
+  flex: 1; /* Takes up equal space */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  position: relative;
+  margin-right: 10px; /* Add spacing between this and month select */
+}
+
+/* Month select field (right aligned) */
+.monthSelect {
+  flex: 1; /* Takes up equal space */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  margin-left: 10px; /* Space between employee and month selects */
   position: relative;
 }
 
-.monthSelect {
-  /* float: right; */
-  margin-left: auto;
-  position: relative;
+/* Styling for the input fields, select dropdowns */
+.employeeSelect select, .monthSelect select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Small shadow for inputs */
+  font-size: 14px;
 }
 
 input {
@@ -77,32 +106,53 @@ select {
 
 #pieChartArea {
   display: flex;
+  justify-content: space-between; /* Evenly space the chart and the entry selection */
   align-items: flex-start;
   gap: 20px;
+  padding: 20px;
+  background-color: #f8f9fa; /* Light background for better contrast */
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for a modern look */
+  overflow: auto;
 }
 
 .entrySelect {
   display: inline-block;
-  vertical-align: middle;
   background-color: white;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px; /* More rounded for modern design */
   padding: 20px;
-  width: auto;
-  overflow: auto;
+  width: 250px; /* Limit the width for better alignment */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+  margin-left: 20px;
+  font-family: Arial, sans-serif; /* Cleaner font */
 }
 
 #pieChart {
   width: 400px;
   height: 400px;
+  background-color: white; /* Optional: white background for the chart */
+  border-radius: 8px; /* Rounded corners for the chart canvas */
 }
 
 .checkbox-container {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* Increase space between checkboxes */
 }
 
 .checkbox-container input[type="checkbox"] {
   margin-right: 10px;
+}
+
+.entrySelect legend {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.entrySelect label {
+  font-size: 14px;
+  color: #333; /* Darker color for better readability */
+  font-weight: 500;
 }

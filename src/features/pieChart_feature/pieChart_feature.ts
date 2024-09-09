@@ -4,15 +4,27 @@ var pieChart = featureUtils.loadPieChart();
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.Excel) {
-    document.getElementById("backButton").onclick = featureUtils.goBack;
-    document.getElementById("selectAll").onclick = () => featureUtils.selectAll("selectAll", "entries");
-    featureUtils.populateDropdown(featureUtils.getTestEmployeeArray(), "employeeSelect");
-    featureUtils.populateDropdown(featureUtils.getMonthArray(), "monthSelect");
-    pieChart;
-    featureUtils.addRemoveDataCheckbox("entryOption1", pieChart, "gebuchte Tage", 80)
-    featureUtils.addRemoveDataCheckbox("entryOption2", pieChart, "fakturierbare Tage", 50);
-    featureUtils.addRemoveDataCheckbox("entryOption3", pieChart, "Urlaub", 10);
-    featureUtils.addRemoveDataCheckbox("entryOption4", pieChart, "Krank", 1);
+    document.getElementById("backButton").onclick = featureUtils.goBack; //configure "Back to Maiin" button
+    document.getElementById("selectAll").onclick = () => featureUtils.selectAll("selectAll", "entries"); //configure "Select All" checkbox
+    featureUtils.populateDropdown(featureUtils.getTestEmployeeArray(), "employeeSelect"); //fill "Select Employees" dropdown
+    featureUtils.populateDropdown(featureUtils.getMonthArray(), "monthSelect"); //fill "Select Month" dropdown
+    pieChart; //load Pie Chart without any data
+    dataArray.forEach(([label, data]) => { //push data into Pie Chart
+      featureUtils.addPieChartData(pieChart, label, data);
+    });
+    featureUtils.configureAllCheckboxes(pieChart); //configure entry checkboxes
   }
 });
 
+var dataArray = [
+  ["gebuchte Tage", 80],
+  ["fakturierbare Tage", 50],
+  ["Urlaub", 10],
+  ["Krank", 1],
+];
+
+dataArray.forEach(([label, data]) => {
+  featureUtils.addRemoveDataCheckbox("selectAll", pieChart, label, data)
+})
+
+// document.getElementById("entryOption3").onclick = () => console.log(JSON.stringify(pieChart.data));
