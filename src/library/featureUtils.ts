@@ -26,8 +26,19 @@ featureUtils.getMonthArray = function () {
   ];
 };
 
-featureUtils.getTestEmployeeArray = function () {
-  return ["All Employees", "Employee 1", "Employee 2", "Employee 3"];
+featureUtils.eliminateDuplicates = function (pArray: any[]) {
+  let sortedObj = {};
+  let correctedArray = [];
+  let i;
+
+  for (let i = 0; i < pArray.length; i++) {
+    sortedObj[pArray[i]] = 0;
+  }
+  for (i in sortedObj) {
+    correctedArray.push(i);
+  }
+
+  return correctedArray;
 };
 
 /**
@@ -126,13 +137,30 @@ featureUtils.loadPieChart = function () {
  * @param pNewData new data that should be added
  */
 featureUtils.addPieChartData = function (pChart: Chart<"pie", number[], string>, pLabel, pNewData) {
+  //ToDo: make sure no duplicate data will be pushed
+
+  var data = pChart.data.datasets[0].data;
+  var labels = pChart.data.labels;
+
+  // var duplexData = data.filter((dataset) => {
+  //   dataset == pNewData;
+  // });
+
+  // var duplexLabels = labels.filter((label) => {
+  //   label == pLabel;
+  // });
+
+  // console.log(JSON.stringify(duplexData) + "\n" + JSON.stringify(duplexLabels));
+
+  // if (duplexData.length <= 1 && duplexLabels.length <= 1) {
   //push new label
-  pChart.data.labels.push(pLabel);
+  labels.push(pLabel);
 
   //push data
   pChart.data.datasets.forEach((dataset) => {
     dataset.data.push(pNewData);
   });
+  // }
   pChart.update();
 };
 
@@ -186,4 +214,43 @@ featureUtils.configureAllCheckboxes = function (pChart: Chart<"pie", number[], s
   featureUtils.addRemoveDataCheckbox("entryOption2", pChart, "fakturierbare Tage", 50);
   featureUtils.addRemoveDataCheckbox("entryOption3", pChart, "Urlaub", 10);
   featureUtils.addRemoveDataCheckbox("entryOption4", pChart, "Krank", 1);
+};
+
+featureUtils.getEmployeeNames = async function (sheet?: Excel.Worksheet): Promise<any[]> {
+  return Excel.run(async (context) => {
+    const activeSheet = sheet || context.workbook.worksheets.getActiveWorksheet();
+
+    //get range of used columns in first row -> header row
+    var headers = activeSheet.getRange("1:1").getUsedRange();
+    headers.load("values");
+    //get count of used rows
+    var usedRange = activeSheet.getUsedRange(true);
+    usedRange.load("rowCount");
+
+    await context.sync();
+    const usedRangeCount = usedRange.rowCount - 1;
+    const rangeAreas = headers.values[0];
+
+    //find employee column
+    var regex = new RegExp(/^(Employee|Mitarbeiter)/i);
+    var areaIndex = rangeAreas.findIndex((header) => regex.test(header));
+
+    //get all values from the column
+    var employeeArea = activeSheet.getRangeByIndexes(1, areaIndex, usedRangeCount, 1);
+    employeeArea.load("values");
+
+    await context.sync();
+    //get array with all employee entries
+    var employeeValues = employeeArea.values;
+    //remove all duplicate names
+    var employees = featureUtils.eliminateDuplicates(employeeValues);
+
+    return employees;
+  });
+};
+
+featureUtils.populateEmployeeDropdown = async function () {
+  var employeeArray = await featureUtils.getEmployeeNames();
+  employeeArray.unshift("All Employees")
+  featureUtils.populateDropdown(employeeArray, "employeeSelect");
 };
